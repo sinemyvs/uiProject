@@ -1,0 +1,104 @@
+﻿# User Management Screen - UI Specification
+
+
+## Overview
+
+
+This document outlines the specifications for the **User Management Screen**. The screen allows administrators to manage users by adding, viewing, enabling/disabling. This will guide in building the interface.
+
+
+## Requirements
+
+
+The user management screen must fulfill the following requirements:
+- Display a table of users with filters.
+- Provide functionality for adding a new user.
+- Allow enabling or disabling users.
+- Filter the user list by enabling/disabling the "Hide Disabled User" checkbox.
+- Include form validation and save functionality.
+- User roles selection and toggle for enabling the user.
+
+
+## UI Components
+
+
+### 1. **User List Table**
+
+
+- **Columns**:
+  - **ID**: Unique identifier for each user.
+  - **User Name**: The username of the user.
+  - **Email**: The email address of the user.
+  - **Enabled**: A boolean field showing whether the user is enabled (`true`) or disabled (`false`).
+
+
+- **Filters**:
+  - Each column has a filter icon (small dropdown) that allows sorting by ID, Username, Email, and Enabled status.
+
+
+- **Table Interaction**:
+  - Clicking on the filter icon for any column allows sorting data (ascending/descending).
+  - Users can click on rows to select or view the details.
+
+
+### 2. **Add New User Button**
+- **Location**: Top-left corner of the screen.
+- **Label**: "New User" (with a "+" icon).
+- **Behavior**:
+  - Clicking this button clears the form in the "New User" section and prepares it for entering a new user’s details.
+  - If the form is incomplete, the "Save User" button should be disabled until all required fields are filled.
+
+
+### 3. **Hide Disabled User Checkbox**
+- **Location**: Top-right of the user list.
+- **Label**: "Hide Disabled User".
+- **Behavior**:
+  - When checked, all disabled users (`Enabled: false`) are hidden from the user list.
+  - If unchecked, both enabled and disabled users are shown.
+
+
+### 4. **New User Form**
+- **Location**: Right-hand side of the screen.
+- **Fields**:
+  - **Username**: (Text input) - Required.
+  - **Display Name**: (Text input) - Optional.
+  - **Phone**: (Text input) - Optional.
+  - **Email**: (Text input) - Required, must validate the format.
+  - **User Roles**: (Dropdown) - The available roles are "Guest", "Admin", and "SuperAdmin". Multiple roles can be selected.
+  - **Enabled**: (Checkbox) - Default is unchecked.
+
+
+- **Behavior**:
+- Upon saving, the new or updated user is displayed in the user list.
+
+
+### 5. **Save User Button**
+- **Location**: Top-right of the "New User" form.
+- **Label**: "Save User".
+- **Behavior**:
+  - Saves the information entered in the "New User" form.
+  - The button is disabled until all required fields (Username, Email, User Role) are filled correctly.
+  - Clicking the button triggers a validation process.
+  - If validation passes, a confirmation modal or notification is shown, and the user is added or updated in the user list.
+
+
+## Page Behavior
+
+
+### On Initial Page Load
+- The user list is displayed with all enabled users (those with `Enabled: true`).
+- The **Hide Disabled User** checkbox is checked by default.
+- The "New User" form is empty and ready for data entry.
+
+
+### Adding a New User
+1. Click the **New User** button.
+2. Enter user details in the form.
+3. Select at least one user role.
+4. The **Save User** button becomes enabled once all required fields are filled.
+5. After saving, the user list updates to include the newly added user.
+
+
+### Enabling/Disabling a User
+- In the **New User** form, use the **Enabled** checkbox to enable or disable the user.
+- Disabled users will be hidden from the list if the **Hide Disabled User** checkbox is checked.
